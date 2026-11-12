@@ -78,13 +78,9 @@ async def claim_task(
     existing_res = await db.execute(existing_stmt)
     existing_assignment = existing_res.scalar_one_or_none()
     if existing_assignment:
-        return TaskClaimResponse(
-            assignment_id=existing_assignment.id,
-            task_id=existing_assignment.task_id,
-            worker_id=existing_assignment.worker_id,
-            status=existing_assignment.status,
-            claim_expires_at=existing_assignment.claim_expires_at,
-            assigned_at=existing_assignment.assigned_at
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="You already have an active claim on this task."
         )
 
     # 2. Concurrency guard: atomic update incrementing claimed_slots only if claimed_slots < total_slots
