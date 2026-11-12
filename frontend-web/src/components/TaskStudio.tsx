@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Database, Plus, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Database, Plus, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { api } from '@/lib/api';
 
 export function TaskStudio({ onTaskCreated }: { onTaskCreated: () => void }) {
@@ -46,16 +46,16 @@ export function TaskStudio({ onTaskCreated }: { onTaskCreated: () => void }) {
   };
 
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 text-zinc-100 max-w-2xl mx-auto space-y-4">
-      <div className="flex items-center gap-2 pb-3 border-b border-zinc-800">
+    <div className="bg-[#0f1422] border border-zinc-800/80 rounded-xl p-5 text-zinc-100 max-w-2xl mx-auto space-y-4 shadow-sm animate-in-card">
+      <div className="flex items-center gap-2 pb-3 border-b border-zinc-800/80">
         <Database className="w-4 h-4 text-purple-400" />
         <h2 className="text-sm font-semibold text-zinc-200">Publish Video Collection Campaign</h2>
       </div>
 
       {success && (
         <div className="p-3 bg-emerald-950/40 border border-emerald-800 text-emerald-300 text-xs rounded flex items-center gap-2">
-          <CheckCircle className="w-4 h-4" />
-          <span>Campaign published to PostgreSQL and live on Worker Station!</span>
+          <CheckCircle2 className="w-4 h-4" />
+          <span>Campaign published and live across all worker stations!</span>
         </div>
       )}
 
@@ -75,50 +75,50 @@ export function TaskStudio({ onTaskCreated }: { onTaskCreated: () => void }) {
             placeholder="e.g. 5-Minute Kitchen Object Interaction"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded p-2 text-zinc-200 focus:border-zinc-600 outline-none"
+            className="w-full bg-[#070a10] border border-zinc-800 rounded p-2 text-zinc-200 focus:border-zinc-600 outline-none"
           />
         </div>
 
         <div>
-          <label className="block text-zinc-400 font-mono mb-1">Worker Instructions</label>
+          <label className="block text-zinc-400 font-mono mb-1">Contributor Instructions</label>
           <textarea
             required
             rows={3}
             placeholder="Describe the continuous motions, camera angle, and environment guidelines..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            className="w-full bg-zinc-950 border border-zinc-800 rounded p-2 text-zinc-200 focus:border-zinc-600 outline-none"
+            className="w-full bg-[#070a10] border border-zinc-800 rounded p-2 text-zinc-200 focus:border-zinc-600 outline-none"
           />
         </div>
 
         <div className="grid grid-cols-3 gap-3">
           <div>
-            <label className="block text-zinc-400 font-mono mb-1">Category</label>
+            <label className="block text-zinc-400 font-mono mb-1">Domain</label>
             <input
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
+              className="w-full bg-[#070a10] border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-zinc-400 font-mono mb-1">Min Duration (Sec)</label>
+            <label className="block text-zinc-400 font-mono mb-1">Target Duration (s)</label>
             <input
               type="number"
               value={duration}
               onChange={(e) => setDuration(Number(e.target.value))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
+              className="w-full bg-[#070a10] border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
             />
           </div>
 
           <div>
-            <label className="block text-zinc-400 font-mono mb-1">Worker Slots</label>
+            <label className="block text-zinc-400 font-mono mb-1">Slots</label>
             <input
               type="number"
               value={slots}
               onChange={(e) => setSlots(Number(e.target.value))}
-              className="w-full bg-zinc-950 border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
+              className="w-full bg-[#070a10] border border-zinc-800 rounded p-2 text-zinc-200 outline-none"
             />
           </div>
         </div>
@@ -126,10 +126,10 @@ export function TaskStudio({ onTaskCreated }: { onTaskCreated: () => void }) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs rounded transition-colors flex items-center justify-center gap-2"
+          className="w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-medium text-xs rounded transition-all flex items-center justify-center gap-2 btn-press"
         >
           {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Plus className="w-4 h-4" />}
-          Publish Campaign to Worker Station
+          Publish Campaign
         </button>
       </form>
     </div>

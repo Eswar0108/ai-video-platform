@@ -4,7 +4,12 @@
 
 :root {
   --background: #090d16;
-  --foreground: #f1f5f9;
+  --surface: #0f1422;
+  --surface-hover: #141b2d;
+  --surface-well: #070a10;
+  --border: rgba(39, 39, 42, 0.7);
+  --foreground: #f4f4f5;
+  --muted: #a1a1aa;
 }
 
 body {
@@ -13,23 +18,48 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom Scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0d121f;
+  background: #090d16;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 3px;
+  background: #27272a;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3f3f46;
+}
+
+/* Button & Interactive micro-interactions */
+.btn-press {
+  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1), opacity 120ms ease;
+}
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Smooth fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-in-card {
+  animation: fadeIn 180ms cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
